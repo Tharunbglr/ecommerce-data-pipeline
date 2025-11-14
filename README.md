@@ -1,0 +1,103 @@
+# E-commerce Data Pipeline Project
+
+This project demonstrates a simple end-to-end data pipeline for an e-commerce scenario.  
+It includes generating synthetic datasets, loading them into a SQLite database, and running a SQL join query to produce a single consolidated output file.  
+The goal is to keep everything clean, understandable, and easy to run.
+
+---
+
+## 📁 Project Structure
+
+ecommerce-data-pipeline/
+│
+├── data/
+│   ├── raw/            → generated CSV files  
+│   └── output/         → final joined_output.csv  
+│
+├── scripts/
+│   ├── data_generation/ → scripts that generate users, products, orders, order_items, reviews  
+│   ├── etl/            → script that loads the CSVs into SQLite  
+│   └── analytics/      → script that runs the SQL join  
+│
+├── sql/                → SQL join query  
+├── logs/               → ETL log file  
+├── ecom.db             → database created by the ETL script  
+└── README.md
+
+---
+
+## 🧩 Pipeline Breakdown
+
+### 1. Data Generation  
+Each script in `scripts/data_generation` creates one dataset and places the output CSV inside `data/raw/`.
+
+### 2. ETL into SQLite  
+The ETL script builds a SQLite database (`ecom.db`), creates tables, loads all CSVs, and logs activity in `logs/etl.log`.
+
+### 3. SQL Join  
+The analytics script executes a join query that merges:
+- users  
+- orders  
+- order_items  
+- products  
+
+The combined output is saved in:
+
+data/output/joined_output.csv
+
+---
+
+## ▶️ How to Run the Entire Pipeline
+
+### Step 1 — Generate the CSV files
+
+python scripts/data_generation/generate_users.py  
+python scripts/data_generation/generate_products.py  
+python scripts/data_generation/generate_orders.py  
+python scripts/data_generation/generate_order_items.py  
+python scripts/data_generation/generate_reviews.py  
+
+All CSVs will appear in:  
+data/raw/
+
+### Step 2 — Load into SQLite
+
+python scripts/etl/load_to_sqlite.py
+
+This creates ecom.db and loads all tables.
+
+### Step 3 — Run SQL join query
+
+python scripts/analytics/run_join_query.py
+
+The final output will appear in:  
+data/output/joined_output.csv
+
+---
+
+## 📊 Example Output
+
+user_name | order_id | order_date | product_name | quantity | total_value  
+--------- | -------- | ----------- | ------------- | -------- | -----------  
+Arjun     | 12       | 2024-09-18 | Laptop Bag    | 1        | 899  
+Riya      | 15       | 2024-10-02 | Mug Set       | 2        | 500  
+Deepak    | 21       | 2024-10-09 | Mouse Pad     | 3        | 750  
+
+(The actual output will vary because the data is generated randomly.)
+
+---
+
+## 🛠 Technologies Used
+
+Python  
+Pandas  
+SQLite  
+SQL  
+Basic logging  
+
+---
+
+## 📌 Notes
+
+The project’s structure is intentionally simple and modular.  
+Each part of the pipeline can be run and understood independently, which makes the workflow easy to maintain and extend.
