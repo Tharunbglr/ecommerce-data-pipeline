@@ -1,0 +1,6 @@
+2025-11-14 15:13:25,065 WARNING CSV for users not found at data\raw\users.csv; skipping
+2025-11-14 15:13:25,071 WARNING CSV for products not found at data\raw\products.csv; skipping
+2025-11-14 15:13:25,071 WARNING CSV for orders not found at data\raw\orders.csv; skipping
+2025-11-14 15:13:25,071 WARNING CSV for order_items not found at data\raw\order_items.csv; skipping
+2025-11-14 15:13:25,071 WARNING CSV for reviews not found at data\raw\reviews.csv; skipping
+2025-11-14 15:13:25,071 INFO ETL process completed.

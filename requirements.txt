@@ -1,0 +1,5 @@
+pandas
+faker
+python-dateutil
+sqlite-utils
+tabulate
